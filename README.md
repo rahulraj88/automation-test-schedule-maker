@@ -10,3 +10,6 @@ Automation tests for the website `https://schedulebuilder.org/`
 - Run `tsc -w`
 - Run `webdriver-manager start`
 - Run `protractor conf.js` to run the tests
+
+Frameworks
+- Protractor using Jasmine
