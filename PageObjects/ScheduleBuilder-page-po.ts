@@ -28,7 +28,6 @@ export class SBHomePagePO {
     }
 
     static async navigateToHome(): Promise<void> {
-        await browser.driver.get('http://www.google.com');
         await browser.driver.get('https://schedulebuilder.org/');
         //browser.sleep(5000);
     }

@@ -16,25 +16,6 @@ describe('Schedule Builder:', function () {
 
     })
 
-    // Run First Test
-    it('verify warning on adding activity without any data', async function () {
-        // Click on Add Activity Button    
-        objAddActivity.click();
-        await browser.driver.wait(until.elementToBeClickable(SBHomePagePO.ActivityTitle), 5000, 'Element taking too long to appear in the DOM');
-        expect(SBHomePagePO.ActivityTitle.isDisplayed()).toBeTruthy();
-        element(by.id('addNewObject')).click();
-
-        await browser.driver.wait(until.elementToBeClickable(SBHomePagePO.warningMessage), 5000, 'Element taking too long to appear in the DOM');
-        if (expect(SBHomePagePO.warningMessage.isDisplayed()).toBeTruthy()) {
-            expect((await SBHomePagePO.warningMessage.getText()).trim()).toBe('No day selected. Please select the day(s) that you would like to add an activity to.')
-
-            await SBHomePagePO.confirmButton.click();
-
-
-        }
-        browser.sleep(1000);
-    });
-
     // Run Second Test
     it('Test Add Activity Feature', async function () {
 
@@ -60,9 +41,7 @@ describe('Schedule Builder:', function () {
         // Select Red Color    
 
         await SBHomePagePO.colourPicker();
-        browser.sleep(1500);
         await pickRandomColor(until, 5);
-        // SBHomePagePO.ActivityTitle.click();
         //  Select Day(s) 
 
         SBHomePagePO.chkDatePicker.get(0).click();
@@ -70,13 +49,8 @@ describe('Schedule Builder:', function () {
         SBHomePagePO.chkDatePicker.get(4).click();
 
         // Select a random Background Color
-        element(by.id('spanfull')).click();
-        /* until.visibilityOf(browser, elm).to */
-        browser.sleep(1500);
-        await pickRandomColor(until, 3);
-        browser.sleep(1500);
-
-        /* SBHomePagePO.ActivityTitle.click(); */
+        await element(by.id('spanfull')).click();
+        await pickRandomColor(until);
 
         // Select and Verify Start TIme fields - Default values and value after selection
 
@@ -141,9 +115,29 @@ describe('Schedule Builder:', function () {
 
         browser.sleep(3000);
     });
+    
+    // Run First Test
+    it('verify warning on adding activity without any data', async function () {
+        // Click on Add Activity Button    
+        objAddActivity.click();
+        await browser.driver.wait(until.elementToBeClickable(SBHomePagePO.ActivityTitle), 5000, 'Element taking too long to appear in the DOM');
+        expect(SBHomePagePO.ActivityTitle.isDisplayed()).toBeTruthy();
+        element(by.id('addNewObject')).click();
+
+        await browser.driver.wait(until.elementToBeClickable(SBHomePagePO.warningMessage), 5000, 'Element taking too long to appear in the DOM');
+        if (expect(SBHomePagePO.warningMessage.isDisplayed()).toBeTruthy()) {
+            expect((await SBHomePagePO.warningMessage.getText()).trim()).toBe('No day selected. Please select the day(s) that you would like to add an activity to.')
+
+            await SBHomePagePO.confirmButton.click();
+
+
+        }
+        browser.sleep(1000);
+    });
 });
 
 async function pickRandomColor(until: ProtractorExpectedConditions, color = null) {
+    browser.sleep(1500);
     let elm;
     const elmList = element.all(by.css('div.full-spectrum:not(.sp-hidden) .sp-thumb-el.sp-thumb-light'));
     if (color) {
