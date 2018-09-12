@@ -1,0 +1,19 @@
+{
+  "name": "protractorpoc",
+  "version": "1.0.0",
+  "description": "test rbc",
+  "main": "index.js",
+  "scripts": {
+    "test": "test rbc"
+  },
+  "author": "Rahul",
+  "license": "ISC",
+  "dependencies": {
+    "protractor": "^5.4.0",
+    "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.8",
+    "jasmine": "^3.2.0"
+  }
+}
