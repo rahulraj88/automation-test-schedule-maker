@@ -117,7 +117,7 @@ describe('Schedule Builder:', function () {
     });
     
     // Run First Test
-    it('verify warning on adding activity without any data', async function () {
+    xit('verify warning on adding activity without any data', async function () {
         // Click on Add Activity Button    
         objAddActivity.click();
         await browser.driver.wait(until.elementToBeClickable(SBHomePagePO.ActivityTitle), 5000, 'Element taking too long to appear in the DOM');
